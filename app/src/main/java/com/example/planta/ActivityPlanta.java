@@ -32,7 +32,7 @@ public class ActivityPlanta extends AppCompatActivity {
             public void onSensorChanged(SensorEvent sensorEvent) {
                 luz.setText(String.valueOf(sensorEvent.values[0]));
                 if(sensorEvent.values[0]<planta.getLuz()){
-
+                status.setText("Muerta");
                 }
 
             }
@@ -52,7 +52,7 @@ public class ActivityPlanta extends AppCompatActivity {
             public void onSensorChanged(SensorEvent sensorEvent) {
                 humedad.setText(String.valueOf(sensorEvent.values[0]));
                 if(sensorEvent.values[0]<planta.getHumedad()){
-
+                    status.setText("Muerta");
                 }
             }
 
@@ -70,8 +70,8 @@ public class ActivityPlanta extends AppCompatActivity {
             public void onSensorChanged(SensorEvent sensorEvent) {
                 float temperatura= sensorEvent.values[0];
                 tenpe.setText(String.valueOf(sensorEvent.values[0]));
-                if(temperatura<planta.tempmin == temperatura>planta.tempmax){
-
+                if(temperatura<planta.tempmin && temperatura>planta.tempmax){
+                    status.setText("Muerta");
                 }
             }
 
@@ -89,7 +89,7 @@ public class ActivityPlanta extends AppCompatActivity {
             public void onSensorChanged(SensorEvent sensorEvent) {
                 acel.setText(String.valueOf(sensorEvent.values[0]));
                 if(sensorEvent.values[0]<planta.getAceleracion()){
-
+                    status.setText("Muerta");
                 }
             }
 
