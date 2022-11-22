@@ -1,11 +1,11 @@
 package com.example.planta;
 
 public class Planta {
-    int humedad;
-    int luz;
-    int aceleracion;
-    int tempmax;
-    int tempmin;
+    int humedad; //esto hablamos de valor minimos
+    int luz;    //esto hablamos de valor minimos
+    int aceleracion;    //esto hablamos de valor minimos
+    int tempmax;    //esto hablamos de valor maximo
+    int tempmin;    //esto hablamos de valor minimos
 
     public Planta(int humedad, int luz, int aceleracion, int tempmax, int tempmin) {
         this.humedad = humedad;
