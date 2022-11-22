@@ -24,7 +24,7 @@ public class ActivityPlanta extends AppCompatActivity {
         //manager
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         //planta
-        Planta planta=  new Planta(20,10000,12,25,-25);
+        Planta planta=  new Planta(20,10000,8,25,-25);
 
         //-----------------------luz----------------------------//
         SensorEventListener luzSensorEventListener = new SensorEventListener() {
@@ -70,7 +70,7 @@ public class ActivityPlanta extends AppCompatActivity {
             public void onSensorChanged(SensorEvent sensorEvent) {
                 float temperatura= sensorEvent.values[0];
                 tenpe.setText(String.valueOf(sensorEvent.values[0]));
-                if(temperatura<planta.tempmin && temperatura>planta.tempmax){
+                if(temperatura<planta.tempmin || temperatura>planta.tempmax){
                     status.setText("Muerta");
                 }
             }
@@ -88,7 +88,7 @@ public class ActivityPlanta extends AppCompatActivity {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 acel.setText(String.valueOf(sensorEvent.values[0]));
-                if(sensorEvent.values[0]<planta.getAceleracion()){
+                if(sensorEvent.values[0]>planta.getAceleracion()){
                     status.setText("Muerta");
                 }
             }
