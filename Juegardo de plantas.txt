@@ -1,0 +1,18 @@
+"Planta challenge"¿
+
+Mide temperatura
+Mide aceleracion
+Mide humedad
+
+Planta 5 etapas (semilla, bulbo, brote, joven, adulta)
+Planta en pantalla, si cierras la app muere
+
+En la pantalla tienes una interfaz que te muestra los valores para que puedas saber si lo haces bien.
+En la planta tambien muestra el nombre de la planta junto a su nombre cientifico.
+En la pantalla también muestra la etapa de crecimiento.
+
+Guarda las plantas en un file.bin de objetos.
+
+6 plantas (frio/calor y sin_agua/agua/poca_agua)
+
+Inglés y español
