@@ -4,17 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buton_empezar"
-        android:text="Start"
-        android:onClick="empezar"/>
+        android:text="Normas (Ya se elaborará más)"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_marginTop="200dp">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_height="150dp"
+                android:layout_width="150dp"
+                android:layout_column="1"
+                android:src="@drawable/planta1"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="270dp"
+            android:layout_gravity="bottom">
+
+            <Button
+                android:layout_column="1"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/buton_empezar"
+                android:text="Start"
+                android:onClick="empezar"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/borrar_planta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:onClick="borrar"
+                android:text="Delete plant" />
+
+            <Button
+                android:id="@+id/ajustes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:onClick="ajustes"
+                android:text="Settings" />
+
+        </TableRow>
+
+    </TableLayout>
+
 </LinearLayout>
