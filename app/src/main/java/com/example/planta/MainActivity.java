@@ -37,13 +37,13 @@ public class MainActivity extends Activity {
 
         // pillamos el valor float del string de velocidad
         switch (growSpeed) {
-            case "slow":
+            case "Slow":
                 growSpeedFloat = 1;
                 break;
-            case "normal":
+            case "Normal":
                 growSpeedFloat = 2;
                 break;
-            case "fast":
+            case "Fast":
                 growSpeedFloat = 3;
                 break;
         }
