@@ -15,10 +15,29 @@ import java.util.ArrayList;
 
 public class ActivityAjustes extends AppCompatActivity {
 
+    private boolean humedadBoolean;
+    private boolean temperaturaBoolean;
+    private boolean nombreBoolean;
+    private String velocidadCrecimiento = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajustes);
+
+        // pillamos los valores del main
+        humedadBoolean = getIntent().getBooleanExtra("humedad", false);
+        temperaturaBoolean = getIntent().getBooleanExtra("temperatura", false);
+        nombreBoolean = getIntent().getBooleanExtra("cientifico", false);
+        velocidadCrecimiento = getIntent().getStringExtra("velocidad");
+        String spin = getIntent().getStringExtra("data");
+
+        // definimos los layout
+        ToggleButton humedad = (ToggleButton) this.findViewById(R.id.humedadToggle);
+        ToggleButton temperatura = (ToggleButton) this.findViewById(R.id.temperaturaToggle);
+        ToggleButton nombre = (ToggleButton) this.findViewById(R.id.cientificoToggle);
+
+        RadioGroup radioGroup = (RadioGroup) this.findViewById(R.id.radioGroup);
 
         Spinner spinner = (Spinner) this.findViewById(R.id.spinner);
 
@@ -29,18 +48,54 @@ public class ActivityAjustes extends AppCompatActivity {
 
         spinner.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, spinList));
 
+        // damos valor a los layout
+
+        // booleans
+        if (humedadBoolean) {
+            humedad.setChecked(true);
+        }
+        if (temperaturaBoolean) {
+            temperatura.setChecked(true);
+        }
+        if (nombreBoolean) {
+            nombre.setChecked(true);
+        }
+
+
+        // radio group
+        RadioButton opcionVelocidad;
+
+        switch (velocidadCrecimiento) {
+            case "Slow":
+                opcionVelocidad = (RadioButton) radioGroup.getTouchables().get(0);
+                opcionVelocidad.setChecked(true);
+                break;
+            case "Normal":
+                opcionVelocidad = (RadioButton) radioGroup.getTouchables().get(1);
+                opcionVelocidad.setChecked(true);
+                break;
+            case "Fast":
+                opcionVelocidad = (RadioButton) radioGroup.getTouchables().get(2);
+                opcionVelocidad.setChecked(true);
+                break;
+        }
+
+        // spinner
+        switch (spin) {
+            case "Realistic":
+                spinner.setSelection(0);
+                break;
+            case "Standar":
+                spinner.setSelection(1);
+                break;
+        }
     }
 
     public void volver (View v) {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
-        boolean humedadBoolean;
-        boolean temperaturaBoolean;
-        boolean nombreBoolean;
-        String velocidadCrecimiento = "";
-
         ToggleButton humedad = (ToggleButton) this.findViewById(R.id.humedadToggle);
-        ToggleButton temperatura = (ToggleButton) this.findViewById(R.id.humedadToggle);
+        ToggleButton temperatura = (ToggleButton) this.findViewById(R.id.temperaturaToggle);
         ToggleButton nombre = (ToggleButton) this.findViewById(R.id.cientificoToggle);
 
         RadioGroup radioGroup = (RadioGroup) this.findViewById(R.id.radioGroup);

@@ -67,8 +67,7 @@
             android:id="@+id/speed2"
             android:layout_width="80dp"
             android:layout_height="20dp"
-            android:text="Normal"
-            android:checked="true"/>
+            android:text="Normal" />
 
         <RadioButton
             android:id="@+id/speed3"
@@ -96,7 +95,7 @@
         android:layout_marginTop="10dp"
         android:text="ToggleButton"
         app:layout_constraintStart_toEndOf="@+id/nombreCientifico"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton3" />
+        app:layout_constraintTop_toBottomOf="@+id/temperaturaToggle" />
 
     <TextView
         android:id="@+id/stats"
@@ -113,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_marginStart="120dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintStart_toEndOf="@+id/stats"
         app:layout_constraintTop_toBottomOf="@+id/cientificoToggle" />
 
@@ -151,7 +150,7 @@
         app:layout_constraintTop_toBottomOf="@+id/humedad" />
 
     <ToggleButton
-        android:id="@+id/toggleButton3"
+        android:id="@+id/temperaturaToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="95dp"

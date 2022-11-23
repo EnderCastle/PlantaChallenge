@@ -46,6 +46,11 @@ public class MainActivity extends Activity {
 
     public void ajustes (View v) {
         Intent intent = new Intent(getApplicationContext(), ActivityAjustes.class);
+        intent.putExtra("humedad", humedadOn);
+        intent.putExtra("temperatura", temperaturaOn);
+        intent.putExtra("cientifico", nombreOn);
+        intent.putExtra("velocidad", growSpeed);
+        intent.putExtra("data", data);
         startActivityForResult(intent, 0);
     }
 
