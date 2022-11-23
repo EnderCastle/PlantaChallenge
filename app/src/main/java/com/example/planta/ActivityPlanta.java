@@ -8,11 +8,14 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.lang.reflect.Field;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimerTask;
@@ -30,13 +33,14 @@ public class ActivityPlanta extends Activity {
         //start hilo
         detecionHora.start();
         //estado planta
+        ImageView imagen = (ImageView) findViewById(R.id.imagen);
         TextView status =(TextView) findViewById(R.id.vida);
         TextView humedad =(TextView) findViewById(R.id.wet);
         TextView luz =(TextView) findViewById(R.id.luz);
         TextView acel =(TextView) findViewById(R.id.sped);
         TextView tenpe =(TextView) findViewById(R.id.temp);
         //ajustes
-        int velocidad;
+        int velocidad=1;
         boolean humedadon=false;
         //manager
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -49,6 +53,7 @@ public class ActivityPlanta extends Activity {
             public void onSensorChanged(SensorEvent sensorEvent) {
                 luz.setText(String.valueOf(sensorEvent.values[0]));
                 if(sensorEvent.values[0]<planta.getLuz()){
+                    imagen.setImageResource(R.drawable.ded);
                 status.setText("Muerta");
                 iniciarHilo = false;
                 }
@@ -72,10 +77,12 @@ public class ActivityPlanta extends Activity {
                     humedad.setText(String.valueOf(sensorEvent.values[0]));
                     if((sensorEvent.values[0]<planta.getHumedad()) == humedadon ){
                         status.setText("Muerta");
+                        imagen.setImageResource(R.drawable.ded);
                         iniciarHilo = false;
                     }
                 }else {
                     humedad.setText("Humedad desactivada");
+
                 }
 
             }
@@ -96,7 +103,18 @@ public class ActivityPlanta extends Activity {
                 tenpe.setText(String.valueOf(sensorEvent.values[0]));
                 if(temperatura<planta.tempmin || temperatura>planta.tempmax){
                     status.setText("Muerta");
+                    imagen.setImageResource(R.drawable.ded);
                     iniciarHilo = false;
+                }
+
+                if(detecionHora.getX() >= (60/velocidad)&&detecionHora.getX()<= (120/velocidad)){
+                    imagen.setImageResource(R.drawable.etapa2);
+                }else if(detecionHora.getX() >= (120/velocidad)&&detecionHora.getX()<= (180/velocidad)){
+                    imagen.setImageResource(R.drawable.etapa3);
+                }else if(detecionHora.getX() >= (180/velocidad)&&detecionHora.getX()<= (240/velocidad)){
+                    imagen.setImageResource(R.drawable.etapa4);
+                }else if(detecionHora.getX() >= (240/velocidad)){
+                    imagen.setImageResource(R.drawable.etapa5);
                 }
             }
 
@@ -115,6 +133,7 @@ public class ActivityPlanta extends Activity {
                 acel.setText(String.valueOf(sensorEvent.values[0]));
                 if(sensorEvent.values[0]>planta.getAceleracion()){
                     status.setText("Muerta");
+                    imagen.setImageResource(R.drawable.ded);
                     iniciarHilo = false;
                 }
             }
