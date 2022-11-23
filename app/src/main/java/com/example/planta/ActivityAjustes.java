@@ -35,10 +35,12 @@ public class ActivityAjustes extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
         boolean humedadBoolean;
+        boolean temperaturaBoolean;
         boolean nombreBoolean;
         String velocidadCrecimiento = "";
 
         ToggleButton humedad = (ToggleButton) this.findViewById(R.id.humedadToggle);
+        ToggleButton temperatura = (ToggleButton) this.findViewById(R.id.humedadToggle);
         ToggleButton nombre = (ToggleButton) this.findViewById(R.id.cientificoToggle);
 
         RadioGroup radioGroup = (RadioGroup) this.findViewById(R.id.radioGroup);
@@ -55,6 +57,15 @@ public class ActivityAjustes extends AppCompatActivity {
             humedadBoolean = false;
         }
         intent.putExtra("humedad",humedadBoolean);
+
+        // valor del toggle temperatura
+        if (temperatura.isChecked()) {
+            temperaturaBoolean = true;
+        }
+        else {
+            temperaturaBoolean = false;
+        }
+        intent.putExtra("temperatura",temperaturaBoolean);
 
         // valor del toggle cientifico
         if (nombre.isChecked()) {
@@ -76,7 +87,7 @@ public class ActivityAjustes extends AppCompatActivity {
         String opcion = spinner.getSelectedItem().toString();
         intent.putExtra("dataDisplayed",opcion);
 
-
+        // devolvemos datos al main y cerramos la clase ajustes
         setResult(RESULT_OK,intent);
         finish();
     }
