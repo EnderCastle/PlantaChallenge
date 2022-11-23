@@ -128,4 +128,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:text="-The growing speed can be slowed or accelerated.\n-You can decide if you want the humidity to be checked\nor not.\n-If you want the scientific name of the plant will be\ndisplayed.\n-In stats you can decide if the showed stats are\ngeneric (cold/warm/hot) or exact data (5ºC).\n\nWhen you click back the settings will be saved and\nyou will go back to the main app."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stats" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

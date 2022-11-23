@@ -30,6 +30,6 @@ public class MainActivity extends Activity {
 
     public void ajustes (View v) {
         Intent intent = new Intent(getApplicationContext(), ActivityAjustes.class);
-        startActivity(intent);
+        startActivityForResult(intent, 0);
     }
 }
