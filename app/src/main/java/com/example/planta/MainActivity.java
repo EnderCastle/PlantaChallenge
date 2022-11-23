@@ -34,8 +34,6 @@ public class MainActivity extends Activity {
         growSpeed = sharedPreferences.getString("velocidadCrecimiento","Normal");
         data = sharedPreferences.getString("data","Realistic");
 
-        Toast.makeText(this, ""+growSpeed, Toast.LENGTH_SHORT).show();
-
     }
     public  void empezar (View v) {
         Intent intent = new Intent(getApplicationContext(),ActivityPlanta.class);
