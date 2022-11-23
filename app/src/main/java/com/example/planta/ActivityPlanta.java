@@ -43,18 +43,34 @@ public class ActivityPlanta extends Activity {
         TextView acel =(TextView) findViewById(R.id.sped);
         TextView tenpe =(TextView) findViewById(R.id.temp);
         //ajustes
-        int velocidad=1;
-        boolean humedadon=false;
+        boolean nombrecien = getIntent().getBooleanExtra("cientifico", false);
+        boolean realista= true;
+        float velocidad= getIntent().getStringExtra("velocidadfloat");
+        boolean tempdes =getIntent().getBooleanExtra("temperatura", false);
+        boolean humedadon=getIntent().getBooleanExtra("humedad", false);
         //manager
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         //planta
-        Planta planta=  new Planta(20,10000,8,25,-25);
+        Planta planta=  new Planta(20,500,8,25,-25);
         Thread horas = null;
         //-----------------------luz----------------------------//
         SensorEventListener luzSensorEventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
-                luz.setText(String.valueOf(sensorEvent.values[0]));
+                if(realista){
+                    if(sensorEvent.values[0]<500){
+                        luz.setText("oscuro");
+                    }else if(sensorEvent.values[0]>500&&sensorEvent.values[0]<1000){
+                        luz.setText ("poco iluminado");
+                    }else if(sensorEvent.values[0]>1000&&sensorEvent.values[0]<15000){
+                        luz.setText("bien iluminado");
+                    }else if(sensorEvent.values[0]>15000){
+                        luz.setText("flashbang");
+                    }
+                }else{
+                    luz.setText(String.valueOf(sensorEvent.values[0]));
+                }
+
                 if(sensorEvent.values[0]<planta.getLuz()){
                     vida=false;
                     imagen.setImageResource(R.drawable.ded);
@@ -78,7 +94,19 @@ public class ActivityPlanta extends Activity {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if(humedadon){
-                    humedad.setText(String.valueOf(sensorEvent.values[0]));
+                    if(realista){
+                        if(sensorEvent.values[0]<20){
+                            humedad.setText("desierto");
+                        }else if(sensorEvent.values[0]>20&&sensorEvent.values[0]<40){
+                            humedad.setText ("poco seco");
+                        }else if(sensorEvent.values[0]>40&&sensorEvent.values[0]<80){
+                            humedad.setText("buena humedad");
+                        }else if(sensorEvent.values[0]>80){
+                            humedad.setText("saca el movil de debajo del agua");
+                        }
+                    }else{
+                        humedad.setText(String.valueOf(sensorEvent.values[0]));
+                    }
                     if((sensorEvent.values[0]<planta.getHumedad()) == humedadon ){
                         vida=false;
                         status.setText("Muerta");
@@ -104,15 +132,29 @@ public class ActivityPlanta extends Activity {
         SensorEventListener tempSensorEventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
-                float temperatura= sensorEvent.values[0];
-                tenpe.setText(String.valueOf(sensorEvent.values[0]));
-                if(temperatura<planta.tempmin || temperatura>planta.tempmax){
-                    vida=false;
-                    status.setText("Muerta");
-                    imagen.setImageResource(R.drawable.ded);
-                    iniciarHilo = false;
-                }
+                if(tempdes) {
+                    float temperatura = sensorEvent.values[0];
+                    if (realista) {
+                        if (sensorEvent.values[0] < -25) {
+                            tenpe.setText("helado");
+                        } else if (sensorEvent.values[0] > -25 && sensorEvent.values[0] < 0) {
+                            tenpe.setText("frio");
+                        } else if (sensorEvent.values[0] > 0 && sensorEvent.values[0] < 25) {
+                            tenpe.setText("buena temperatura");
+                        } else if (sensorEvent.values[0] > 25) {
+                            tenpe.setText("HOT");
+                        }
+                    } else {
+                        tenpe.setText(String.valueOf(sensorEvent.values[0]));
+                    }
 
+                    if (temperatura < planta.tempmin || temperatura > planta.tempmax) {
+                        vida = false;
+                        status.setText("Muerta");
+                        imagen.setImageResource(R.drawable.ded);
+                        iniciarHilo = false;
+                    }
+                }
                 if(detecionHora.getX() >= (60/velocidad)&&detecionHora.getX()<= (120/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa2);
                 }else if(detecionHora.getX() >= (120/velocidad)&&detecionHora.getX()<= (180/velocidad)&&vida){
@@ -136,7 +178,11 @@ public class ActivityPlanta extends Activity {
         SensorEventListener speedSensorEventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
-                acel.setText(String.valueOf(sensorEvent.values[0]));
+                if(realista){
+                    acel.setText("no me agites");
+                }else{
+                    acel.setText(String.valueOf(sensorEvent.values[0]));
+                }
                 if(sensorEvent.values[0]>planta.getAceleracion()){
                     vida=false;
                     status.setText("Muerta");
@@ -158,8 +204,8 @@ public class ActivityPlanta extends Activity {
         Date currentTime = Calendar.getInstance().getTime();
         TextView nacimiento = (TextView) findViewById(R.id.hora_start);
         nacimiento.setText(currentTime.toString());
-
     }
+
     public  void  test(View view){
         System.out.println("update"+detecionHora.getX());
     }
