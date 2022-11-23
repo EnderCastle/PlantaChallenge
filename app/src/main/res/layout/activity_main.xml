@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,63 +8,68 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Normas (Ya se elaborará más)"/>
+        android:id="@+id/normas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="20dp"
+        android:text="Instrucciones y normas (texto a  elaborar)"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/planta1"
+        app:layout_constraintBottom_toTopOf="@+id/buton_empezar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/normas" />
 
-        <TableRow
-            android:layout_marginTop="200dp">
+    <Button
+        android:id="@+id/buton_empezar"
+        android:layout_width="160dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="70dp"
+        android:onClick="empezar"
+        android:text="Start"
+        app:layout_constraintBottom_toTopOf="@+id/borrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_height="150dp"
-                android:layout_width="150dp"
-                android:layout_column="1"
-                android:src="@drawable/planta1"/>
+    <Button
+        android:id="@+id/borrar"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginBottom="30dp"
+        android:onClick="borrar"
+        android:text="Delete plant"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ajustes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buton_empezar" />
 
-        </TableRow>
+    <Button
+        android:id="@+id/ajustes"
+        android:layout_width="150dp"
+        android:layout_height="90dp"
+        android:layout_marginEnd="10dp"
+        android:onClick="ajustes"
+        android:text="Settings"
+        app:layout_constraintBottom_toBottomOf="@+id/borrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/borrar"
+        app:layout_constraintTop_toTopOf="@+id/borrar" />
 
-        <TableRow
-            android:layout_marginTop="270dp"
-            android:layout_gravity="bottom">
-
-            <Button
-                android:layout_column="1"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/buton_empezar"
-                android:text="Start"
-                android:onClick="empezar"/>
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/borrar_planta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:onClick="borrar"
-                android:text="Delete plant" />
-
-            <Button
-                android:id="@+id/ajustes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:onClick="ajustes"
-                android:text="Settings" />
-
-        </TableRow>
-
-    </TableLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
