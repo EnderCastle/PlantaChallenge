@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
     private String growSpeed;
     private float growSpeedFloat;
     private String data;
+    private boolean databool;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -46,6 +47,15 @@ public class MainActivity extends Activity {
                 growSpeedFloat = 3;
                 break;
         }
+        //pillamos el valor boolean de reasilmo/standar
+        switch (data) {
+            case "Realistic":
+               databool = true;
+                break;
+            case "Standar":
+                databool =false;
+                break;
+        }
 
     }
     public  void empezar (View v) {
@@ -54,7 +64,7 @@ public class MainActivity extends Activity {
         intent.putExtra("temperatura", temperaturaOn);
         intent.putExtra("cientifico", nombreOn);
         intent.putExtra("velocidadFloat", growSpeedFloat);
-        intent.putExtra("data", data);
+        intent.putExtra("data", databool);
         startActivity(intent);
     }
 

@@ -44,15 +44,20 @@ public class ActivityPlanta extends Activity {
         TextView tenpe =(TextView) findViewById(R.id.temp);
         //ajustes
         boolean nombrecien = getIntent().getBooleanExtra("cientifico", false);
-        boolean realista= true;
-        float velocidad= getIntent().getStringExtra("velocidadfloat");
+        boolean realista= getIntent().getBooleanExtra("data",false);
+        float velocidad= getIntent().getFloatExtra("velocidadFloat",1);
         boolean tempdes =getIntent().getBooleanExtra("temperatura", false);
         boolean humedadon=getIntent().getBooleanExtra("humedad", false);
+        System.out.println(nombrecien);
+        System.out.println(realista);
+        System.out.println(velocidad);
+        System.out.println(tempdes);
+        System.out.println(humedadon);
+
         //manager
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         //planta
         Planta planta=  new Planta(20,500,8,25,-25);
-        Thread horas = null;
         //-----------------------luz----------------------------//
         SensorEventListener luzSensorEventListener = new SensorEventListener() {
             @Override
@@ -154,7 +159,10 @@ public class ActivityPlanta extends Activity {
                         imagen.setImageResource(R.drawable.ded);
                         iniciarHilo = false;
                     }
+                }else {
+                    tenpe.setText("Temo desactivada");
                 }
+
                 if(detecionHora.getX() >= (60/velocidad)&&detecionHora.getX()<= (120/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa2);
                 }else if(detecionHora.getX() >= (120/velocidad)&&detecionHora.getX()<= (180/velocidad)&&vida){
