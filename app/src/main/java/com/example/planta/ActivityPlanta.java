@@ -21,6 +21,8 @@ public class ActivityPlanta extends AppCompatActivity {
         TextView luz =(TextView) findViewById(R.id.luz);
         TextView acel =(TextView) findViewById(R.id.sped);
         TextView tenpe =(TextView) findViewById(R.id.temp);
+        //ajustes
+        boolean humedadon=true;
         //manager
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         //planta
@@ -51,7 +53,7 @@ public class ActivityPlanta extends AppCompatActivity {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 humedad.setText(String.valueOf(sensorEvent.values[0]));
-                if(sensorEvent.values[0]<planta.getHumedad()){
+                if((sensorEvent.values[0]<planta.getHumedad()) == humedadon ){
                     status.setText("Muerta");
                 }
             }
