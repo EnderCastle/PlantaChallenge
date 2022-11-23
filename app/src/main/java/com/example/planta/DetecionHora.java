@@ -9,7 +9,7 @@ public class DetecionHora extends Thread {
         try {
             while (ActivityPlanta.iniciarHilo){
                 Thread.sleep(1000);
-                x++;
+                x+=ActivityPlanta.velocidadreloj;
             }
         }catch (Exception e){
             System.out.println("Error de hilo ="+e.getMessage());

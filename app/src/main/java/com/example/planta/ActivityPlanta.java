@@ -26,6 +26,7 @@ public class ActivityPlanta extends Activity {
     boolean vida= true;
     //Contar horas y estado de crecimiento planta
     DetecionHora detecionHora= new DetecionHora();
+    static int velocidadreloj=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,15 +164,7 @@ public class ActivityPlanta extends Activity {
                     tenpe.setText("Temo desactivada");
                 }
 
-                if(detecionHora.getX() >= (60/velocidad)&&detecionHora.getX()<= (120/velocidad)&&vida){
-                    imagen.setImageResource(R.drawable.etapa2);
-                }else if(detecionHora.getX() >= (120/velocidad)&&detecionHora.getX()<= (180/velocidad)&&vida){
-                    imagen.setImageResource(R.drawable.etapa3);
-                }else if(detecionHora.getX() >= (180/velocidad)&&detecionHora.getX()<= (240/velocidad)&&vida){
-                    imagen.setImageResource(R.drawable.etapa4);
-                }else if(detecionHora.getX() >= (240/velocidad)&&vida){
-                    imagen.setImageResource(R.drawable.etapa5);
-                }
+
             }
 
             @Override
@@ -196,6 +189,15 @@ public class ActivityPlanta extends Activity {
                     status.setText("Muerta");
                     imagen.setImageResource(R.drawable.ded);
                     iniciarHilo = false;
+                }
+                if(detecionHora.getX() >= (60/velocidad)&&detecionHora.getX()<= (120/velocidad)&&vida){
+                    imagen.setImageResource(R.drawable.etapa2);
+                }else if(detecionHora.getX() >= (120/velocidad)&&detecionHora.getX()<= (180/velocidad)&&vida){
+                    imagen.setImageResource(R.drawable.etapa3);
+                }else if(detecionHora.getX() >= (180/velocidad)&&detecionHora.getX()<= (240/velocidad)&&vida){
+                    imagen.setImageResource(R.drawable.etapa4);
+                }else if(detecionHora.getX() >= (240/velocidad)&&vida){
+                    imagen.setImageResource(R.drawable.etapa5);
                 }
             }
 
