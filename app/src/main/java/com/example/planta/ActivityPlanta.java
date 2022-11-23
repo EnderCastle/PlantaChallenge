@@ -1,31 +1,48 @@
 package com.example.planta;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
 
+import android.app.Activity;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-public class ActivityPlanta extends AppCompatActivity {
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimerTask;
+
+public class ActivityPlanta extends Activity {
+
+    static boolean iniciarHilo=true;
+    //Contar horas y estado de crecimiento planta
+    DetecionHora detecionHora= new DetecionHora();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planta);
+        //start hilo
+        detecionHora.start();
         //estado planta
         TextView status =(TextView) findViewById(R.id.vida);
         TextView humedad =(TextView) findViewById(R.id.wet);
         TextView luz =(TextView) findViewById(R.id.luz);
         TextView acel =(TextView) findViewById(R.id.sped);
         TextView tenpe =(TextView) findViewById(R.id.temp);
+        //ajustes
+        int velocidad;
+        boolean humedadon=false;
         //manager
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         //planta
         Planta planta=  new Planta(20,10000,8,25,-25);
-
+        Thread horas = null;
         //-----------------------luz----------------------------//
         SensorEventListener luzSensorEventListener = new SensorEventListener() {
             @Override
@@ -33,6 +50,7 @@ public class ActivityPlanta extends AppCompatActivity {
                 luz.setText(String.valueOf(sensorEvent.values[0]));
                 if(sensorEvent.values[0]<planta.getLuz()){
                 status.setText("Muerta");
+                iniciarHilo = false;
                 }
 
             }
@@ -50,10 +68,16 @@ public class ActivityPlanta extends AppCompatActivity {
         SensorEventListener wetSensorEventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
-                humedad.setText(String.valueOf(sensorEvent.values[0]));
-                if(sensorEvent.values[0]<planta.getHumedad()){
-                    status.setText("Muerta");
+                if(humedadon){
+                    humedad.setText(String.valueOf(sensorEvent.values[0]));
+                    if((sensorEvent.values[0]<planta.getHumedad()) == humedadon ){
+                        status.setText("Muerta");
+                        iniciarHilo = false;
+                    }
+                }else {
+                    humedad.setText("Humedad desactivada");
                 }
+
             }
 
             @Override
@@ -72,6 +96,7 @@ public class ActivityPlanta extends AppCompatActivity {
                 tenpe.setText(String.valueOf(sensorEvent.values[0]));
                 if(temperatura<planta.tempmin || temperatura>planta.tempmax){
                     status.setText("Muerta");
+                    iniciarHilo = false;
                 }
             }
 
@@ -90,6 +115,7 @@ public class ActivityPlanta extends AppCompatActivity {
                 acel.setText(String.valueOf(sensorEvent.values[0]));
                 if(sensorEvent.values[0]>planta.getAceleracion()){
                     status.setText("Muerta");
+                    iniciarHilo = false;
                 }
             }
 
@@ -103,5 +129,13 @@ public class ActivityPlanta extends AppCompatActivity {
         sm.registerListener(speedSensorEventListener,speed,SensorManager.SENSOR_DELAY_NORMAL);
 
 
+        Date currentTime = Calendar.getInstance().getTime();
+        TextView nacimiento = (TextView) findViewById(R.id.hora_start);
+        nacimiento.setText(currentTime.toString());
+
     }
+    public  void  test(View view){
+        System.out.println("update"+detecionHora.getX());
+    }
+
 }
