@@ -61,14 +61,14 @@
             android:id="@+id/speed1"
             android:layout_width="80dp"
             android:layout_height="20dp"
-            android:text="Slow"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:text="Slow" />
 
         <RadioButton
             android:id="@+id/speed2"
             android:layout_width="80dp"
             android:layout_height="20dp"
-            android:text="Normal" />
+            android:text="Normal"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/speed3"
