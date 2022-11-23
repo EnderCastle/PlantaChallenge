@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
         intent.putExtra("humedad", humedadOn);
         intent.putExtra("temperatura", temperaturaOn);
         intent.putExtra("cientifico", nombreOn);
-        intent.putExtra("velocidad", growSpeed);
+        intent.putExtra("velocidad", growSpeedFloat);
         intent.putExtra("data", data);
         startActivity(intent);
     }
