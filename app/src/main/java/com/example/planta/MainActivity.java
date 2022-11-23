@@ -34,6 +34,19 @@ public class MainActivity extends Activity {
         growSpeed = sharedPreferences.getString("velocidadCrecimiento","Normal");
         data = sharedPreferences.getString("data","Realistic");
 
+        // pillamos el valor float del string de velocidad
+        switch (growSpeed) {
+            case "slow":
+                growSpeedFloat = 1;
+                break;
+            case "normal":
+                growSpeedFloat = 2;
+                break;
+            case "fast":
+                growSpeedFloat = 3;
+                break;
+        }
+
     }
     public  void empezar (View v) {
         Intent intent = new Intent(getApplicationContext(),ActivityPlanta.class);
@@ -67,19 +80,6 @@ public class MainActivity extends Activity {
             nombreOn = intent.getBooleanExtra("nombre", false);
             growSpeed = intent.getStringExtra("velocidad");
             data = intent.getStringExtra("dataDisplayed");
-
-            // pillamos el valor float del string de velocidad
-            switch (growSpeed) {
-                case "slow":
-                    growSpeedFloat = 1;
-                    break;
-                case "normal":
-                    growSpeedFloat = 2;
-                    break;
-                case "fast":
-                    growSpeedFloat = 3;
-                    break;
-            }
 
             // definimos el shared
             SharedPreferences sharedPreferences = getSharedPreferences("ajuste", Context.MODE_PRIVATE);
