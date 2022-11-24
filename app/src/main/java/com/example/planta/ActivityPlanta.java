@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -93,10 +94,7 @@ public class ActivityPlanta extends Activity {
                 }
 
                 if(sensorEvent.values[0]<planta.getLuz()){
-                    vida=false;
-                    imagen.setImageResource(R.drawable.ded);
-                status.setText("Dead");
-                iniciarHilo = false;
+                    kill();
                 }
 
             }
@@ -129,10 +127,7 @@ public class ActivityPlanta extends Activity {
                         humedad.setText(String.valueOf(sensorEvent.values[0]));
                     }
                     if((sensorEvent.values[0]<planta.getHumedad()) == humedadon ){
-                        vida=false;
-                        status.setText("Dead");
-                        imagen.setImageResource(R.drawable.ded);
-                        iniciarHilo = false;
+                        kill();
                     }
                 }else {
                     humedad.setText("Humidity desactivated");
@@ -170,10 +165,7 @@ public class ActivityPlanta extends Activity {
                     }
 
                     if (temperatura < planta.tempmin || temperatura > planta.tempmax) {
-                        vida = false;
-                        status.setText("Dead");
-                        imagen.setImageResource(R.drawable.ded);
-                        iniciarHilo = false;
+                        kill();
                     }
                 }else {
                     tenpe.setText("Temperature desactivated");
@@ -200,10 +192,7 @@ public class ActivityPlanta extends Activity {
                     acel.setText(String.valueOf(sensorEvent.values[0]));
                 }
                 if(sensorEvent.values[0]>planta.getAceleracion()){
-                    vida=false;
-                    status.setText("Dead");
-                    imagen.setImageResource(R.drawable.ded);
-                    iniciarHilo = false;
+                    kill();
                 }
 
                 // adaptamos el progressbar por segundo
@@ -237,6 +226,17 @@ public class ActivityPlanta extends Activity {
 
     public  void  test(View view){
         System.out.println("update"+detecionHora.getX());
+    }
+
+    public void kill() {
+        TextView status =(TextView) findViewById(R.id.vida);
+        ImageView imagen = (ImageView) findViewById(R.id.imagen);
+        ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressCrecimiento);
+        vida = false;
+        status.setText("Dead");
+        imagen.setImageResource(R.drawable.ded);
+        progressBar.getProgressDrawable().setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
+        iniciarHilo = false;
     }
 
 }
