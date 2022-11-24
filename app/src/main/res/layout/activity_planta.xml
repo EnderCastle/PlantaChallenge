@@ -11,9 +11,9 @@
         android:id="@+id/vida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="193dp"
+        android:layout_marginStart="180dp"
         android:layout_marginTop="16dp"
-        android:text="viva"
+        android:text="Alife"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,10 +57,10 @@
         android:id="@+id/hora_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/imagen"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/vida"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button"
