@@ -115,7 +115,7 @@ public class ActivityPlanta extends Activity {
                     }
                     if((sensorEvent.values[0]<planta.getHumedad()) == humedadon ){
                         vida=false;
-                        status.setText("Muerta");
+                        status.setText("Dead");
                         imagen.setImageResource(R.drawable.ded);
                         iniciarHilo = false;
                     }
