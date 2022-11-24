@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
         android:layout_marginTop="16dp"
-        android:text="Alife"
+        android:text="@string/alive"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,10 +21,10 @@
         android:id="@+id/wet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintStart_toEndOf="@+id/sped"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="@+id/sped"
+        app:layout_constraintTop_toBottomOf="@+id/luz" />
 
     <TextView
         android:id="@+id/temp"
@@ -39,18 +39,18 @@
         android:id="@+id/sped"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintStart_toEndOf="@+id/luz"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temp" />
 
     <TextView
         android:id="@+id/luz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="210dp"
         android:layout_marginTop="52dp"
-        app:layout_constraintStart_toEndOf="@+id/temp"
+        app:layout_constraintStart_toStartOf="@+id/temp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -87,8 +87,8 @@
         android:id="@+id/nombrePlanta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="122dp"
-        android:layout_marginTop="91dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="160dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -96,7 +96,8 @@
         android:id="@+id/scientificName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="91dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="160dp"
         app:layout_constraintStart_toEndOf="@+id/nombrePlanta"
         app:layout_constraintTop_toTopOf="parent" />
 

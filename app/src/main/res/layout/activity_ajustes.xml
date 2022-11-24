@@ -12,7 +12,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="30dp"
-        android:text="Check humidity:"
+        android:text="@string/humedad"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/velocidad" />
 
@@ -22,7 +22,7 @@
         android:layout_height="30dp"
         android:layout_marginStart="140dp"
         android:layout_marginTop="32dp"
-        android:text="Settings"
+        android:text="@string/title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,7 +33,8 @@
         android:layout_height="50dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="15dp"
-        android:text="ToggleButton"
+        android:textOn="@string/toggleOn"
+        android:textOff="@string/toggleOff"
         app:layout_constraintStart_toEndOf="@+id/humedad"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
@@ -43,7 +44,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="35dp"
-        android:text="Growing speed:"
+        android:text="@string/growSp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tittle" />
 
@@ -61,20 +62,20 @@
             android:id="@+id/speed1"
             android:layout_width="80dp"
             android:layout_height="20dp"
-            android:text="Slow" />
+            android:text="@string/growSp1" />
 
         <RadioButton
             android:id="@+id/speed2"
             android:layout_width="80dp"
             android:layout_height="20dp"
-            android:text="Normal" />
+            android:text="@string/growSp2" />
 
         <RadioButton
             android:id="@+id/speed3"
             android:layout_width="80dp"
             android:layout_height="20dp"
             android:layout_weight="1"
-            android:text="Fast" />
+            android:text="@string/growSp3" />
     </RadioGroup>
 
     <TextView
@@ -83,7 +84,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
-        android:text="Scientific name:"
+        android:text="@string/science"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/temperatura" />
 
@@ -93,7 +94,8 @@
         android:layout_height="50dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="10dp"
-        android:text="ToggleButton"
+        android:textOn="@string/toggleOn"
+        android:textOff="@string/toggleOff"
         app:layout_constraintStart_toEndOf="@+id/nombreCientifico"
         app:layout_constraintTop_toBottomOf="@+id/temperaturaToggle" />
 
@@ -103,7 +105,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
-        android:text="Stats:"
+        android:text="@string/stats"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombreCientifico" />
 
@@ -123,7 +125,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginBottom="16dp"
         android:onClick="volver"
-        android:text="Back"
+        android:text="@string/volver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -134,7 +136,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
-        android:text="-The growing speed can be slowed or accelerated.\n-You can decide if you want the humidity and temperature\nto be checked or not.\n-If you want the scientific name of the plant will be\ndisplayed.\n-In stats you can decide if the showed stats are\ngeneric (cold/warm/hot) or exact data (5ºC).\n\nWhen you click back the settings will be saved and\nyou will go back to the main app."
+        android:text="@string/settingsText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stats" />
@@ -145,7 +147,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
-        android:text="Temperature:"
+        android:text="@string/temperatura"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/humedad" />
 
@@ -155,7 +157,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="95dp"
         android:layout_marginTop="10dp"
-        android:text="ToggleButton"
+        android:textOn="@string/toggleOn"
+        android:textOff="@string/toggleOff"
         app:layout_constraintStart_toEndOf="@+id/temperatura"
         app:layout_constraintTop_toBottomOf="@+id/humedadToggle" />
 

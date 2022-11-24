@@ -25,6 +25,13 @@ public class ActivityAjustes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajustes);
 
+        String velocidad1 = getString(R.string.growSp1);
+        String velocidad2 = getString(R.string.growSp2);
+        String velocidad3 = getString(R.string.growSp3);
+
+        String stat1 = getString(R.string.stat1);
+        String stat2 = getString(R.string.stat2);
+
         // pillamos los valores del main
         humedadBoolean = getIntent().getBooleanExtra("humedad", false);
         temperaturaBoolean = getIntent().getBooleanExtra("temperatura", false);
@@ -43,8 +50,8 @@ public class ActivityAjustes extends AppCompatActivity {
 
         ArrayList<String> spinList = new ArrayList<>();
 
-        spinList.add("Realistic");
-        spinList.add("Standar");
+        spinList.add(stat1);
+        spinList.add(stat2);
 
         spinner.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, spinList));
 
@@ -65,29 +72,25 @@ public class ActivityAjustes extends AppCompatActivity {
         // radio group
         RadioButton opcionVelocidad;
 
-        switch (velocidadCrecimiento) {
-            case "Slow":
-                opcionVelocidad = (RadioButton) radioGroup.getTouchables().get(0);
-                opcionVelocidad.setChecked(true);
-                break;
-            case "Normal":
-                opcionVelocidad = (RadioButton) radioGroup.getTouchables().get(1);
-                opcionVelocidad.setChecked(true);
-                break;
-            case "Fast":
-                opcionVelocidad = (RadioButton) radioGroup.getTouchables().get(2);
-                opcionVelocidad.setChecked(true);
-                break;
+        if (velocidadCrecimiento.equals(velocidad1)) {
+            opcionVelocidad = (RadioButton) radioGroup.getTouchables().get(0);
+            opcionVelocidad.setChecked(true);
+        }
+        else if (velocidadCrecimiento.equals(velocidad2)) {
+            opcionVelocidad = (RadioButton) radioGroup.getTouchables().get(1);
+            opcionVelocidad.setChecked(true);
+        }
+        else if (velocidadCrecimiento.equals(velocidad3)) {
+            opcionVelocidad = (RadioButton) radioGroup.getTouchables().get(2);
+            opcionVelocidad.setChecked(true);
         }
 
         // spinner
-        switch (spin) {
-            case "Realistic":
-                spinner.setSelection(0);
-                break;
-            case "Standar":
-                spinner.setSelection(1);
-                break;
+        if (spin.equals(stat1)) {
+            spinner.setSelection(0);
+        }
+        else if (spin.equals(stat2)) {
+            spinner.setSelection(1);
         }
     }
 

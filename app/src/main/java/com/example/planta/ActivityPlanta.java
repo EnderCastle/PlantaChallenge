@@ -40,11 +40,11 @@ public class ActivityPlanta extends Activity {
         detecionHora.start();
         //estado planta
         ImageView imagen = (ImageView) findViewById(R.id.imagen);
-        TextView status =(TextView) findViewById(R.id.vida);
         TextView humedad =(TextView) findViewById(R.id.wet);
         TextView luz =(TextView) findViewById(R.id.luz);
         TextView acel =(TextView) findViewById(R.id.sped);
         TextView tenpe =(TextView) findViewById(R.id.temp);
+
         //ajustes
         boolean nombrecien = getIntent().getBooleanExtra("cientifico", false);
         boolean realista= getIntent().getBooleanExtra("data",false);
@@ -57,19 +57,22 @@ public class ActivityPlanta extends Activity {
         System.out.println(tempdes);
         System.out.println(humedadon);
 
+        // tiempo
+        int temporizador = 60;
+
         // damos nombre a la planta
         TextView nombre = (TextView) this.findViewById(R.id.nombrePlanta);
-        nombre.setText("Pimiento");
+        nombre.setText(R.string.pimiento);
 
         // si nombrecien es true escribimos el nombre cientifico
         if (nombrecien) {
             TextView nombreCien = (TextView) this.findViewById(R.id.scientificName);
-            nombreCien.setText(":(Capsicum Annuum)");
+            nombreCien.setText("(Capsicum Annuum)");
         }
 
         // creamos el progressbar y depende el maximo del tiempo que tarda la planta
         ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressCrecimiento);
-        progressBar.setMax(240/(int)velocidad);
+        progressBar.setMax((temporizador * 4)/(int)velocidad);
 
         //manager
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -81,13 +84,13 @@ public class ActivityPlanta extends Activity {
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if(realista){
                     if(sensorEvent.values[0]<500){
-                        luz.setText("Dark");
+                        luz.setText(R.string.luz1);
                     }else if(sensorEvent.values[0]>500&&sensorEvent.values[0]<1000){
-                        luz.setText ("Few ilumination");
+                        luz.setText (R.string.luz2);
                     }else if(sensorEvent.values[0]>1000&&sensorEvent.values[0]<15000){
-                        luz.setText("correct ilumination");
+                        luz.setText(R.string.luz3);
                     }else if(sensorEvent.values[0]>15000){
-                        luz.setText("Flashbang");
+                        luz.setText(R.string.luz4);
                     }
                 }else{
                     luz.setText(String.valueOf(sensorEvent.values[0]));
@@ -115,13 +118,13 @@ public class ActivityPlanta extends Activity {
                 if(humedadon){
                     if(realista){
                         if(sensorEvent.values[0]<20){
-                            humedad.setText("Desert like");
+                            humedad.setText(R.string.hum1);
                         }else if(sensorEvent.values[0]>20&&sensorEvent.values[0]<40){
-                            humedad.setText ("Dry");
+                            humedad.setText (R.string.hum2);
                         }else if(sensorEvent.values[0]>40&&sensorEvent.values[0]<80){
-                            humedad.setText("Nice humidity");
+                            humedad.setText(R.string.hum3);
                         }else if(sensorEvent.values[0]>80){
-                            humedad.setText("Get the mobile out of the water");
+                            humedad.setText(R.string.hum4);
                         }
                     }else{
                         humedad.setText(String.valueOf(sensorEvent.values[0]));
@@ -130,7 +133,7 @@ public class ActivityPlanta extends Activity {
                         kill();
                     }
                 }else {
-                    humedad.setText("Humidity desactivated");
+                    humedad.setText(R.string.humNo);
 
                 }
 
@@ -152,13 +155,13 @@ public class ActivityPlanta extends Activity {
                     float temperatura = sensorEvent.values[0];
                     if (realista) {
                         if (sensorEvent.values[0] < -25) {
-                            tenpe.setText("ICE");
+                            tenpe.setText(R.string.temp1);
                         } else if (sensorEvent.values[0] > -25 && sensorEvent.values[0] < 0) {
-                            tenpe.setText("Cold");
+                            tenpe.setText(R.string.temp2);
                         } else if (sensorEvent.values[0] > 0 && sensorEvent.values[0] < 25) {
-                            tenpe.setText("Warm");
+                            tenpe.setText(R.string.temp3);
                         } else if (sensorEvent.values[0] > 25) {
-                            tenpe.setText("HOT");
+                            tenpe.setText(R.string.temp4);
                         }
                     } else {
                         tenpe.setText(String.valueOf(sensorEvent.values[0]));
@@ -168,7 +171,7 @@ public class ActivityPlanta extends Activity {
                         kill();
                     }
                 }else {
-                    tenpe.setText("Temperature desactivated");
+                    tenpe.setText(R.string.tempNo);
                 }
 
 
@@ -187,7 +190,7 @@ public class ActivityPlanta extends Activity {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if(realista){
-                    acel.setText("Don't shake me");
+                    acel.setText(R.string.shake);
                 }else{
                     acel.setText(String.valueOf(sensorEvent.values[0]));
                 }
@@ -198,14 +201,15 @@ public class ActivityPlanta extends Activity {
                 // adaptamos el progressbar por segundo
                 progressBar.setProgress(detecionHora.getX());
 
-                if(detecionHora.getX() >= (60/velocidad)&&detecionHora.getX()<= (120/velocidad)&&vida){
+                if(detecionHora.getX() >= (temporizador/velocidad)&&detecionHora.getX()<= (temporizador*2/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa2);
-                }else if(detecionHora.getX() >= (120/velocidad)&&detecionHora.getX()<= (180/velocidad)&&vida){
+                }else if(detecionHora.getX() >= (temporizador*2/velocidad)&&detecionHora.getX()<= (temporizador*3/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa3);
-                }else if(detecionHora.getX() >= (180/velocidad)&&detecionHora.getX()<= (240/velocidad)&&vida){
+                }else if(detecionHora.getX() >= (temporizador*3/velocidad)&&detecionHora.getX()<= (temporizador*4/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa4);
-                }else if(detecionHora.getX() >= (240/velocidad)&&vida){
+                }else if(detecionHora.getX() >= (temporizador*4/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa5);
+                    progressBar.getProgressDrawable().setColorFilter(Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
                 }
             }
 
@@ -233,7 +237,7 @@ public class ActivityPlanta extends Activity {
         ImageView imagen = (ImageView) findViewById(R.id.imagen);
         ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressCrecimiento);
         vida = false;
-        status.setText("Dead");
+        status.setText(R.string.dead);
         imagen.setImageResource(R.drawable.ded);
         progressBar.getProgressDrawable().setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
         iniciarHilo = false;

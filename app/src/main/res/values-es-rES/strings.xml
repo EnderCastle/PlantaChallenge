@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Planta Challenge</string>
+    <!--Main-->
+    <string name="instrucciones">Mantén viva tu planta y crecerá, mantén un ambiente óptimo para su crecimiento (húmedad y temperatura), no la agites o morirá.\nDisfruta.</string>
+    <string name="boton1">Nueva planta/Continuar</string>
+    <string name="boton2">Borrar planta</string>
+    <string name="boton3">Ajustes</string>
+    <!--Ajustes-->
+    <string name="title">Ajustes</string>
+    <string name="growSp">Crecimiento:</string>
+    <string name="growSp1">Lento</string>
+    <string name="growSp2">Normal</string>
+    <string name="growSp3">Rápido</string>
+    <string name="humedad">Comprobar húmedad:</string>
+    <string name="temperatura">Temperatura:</string>
+    <string name="science">Nombre científico:</string>
+    <string name="toggleOn">Encendido</string>
+    <string name="toggleOff">Apagado</string>
+    <string name="stats">Estadísticas:</string>
+    <string name="stat1">Realista</string>
+    <string name="stat2">Estándar</string>
+    <string name="settingsText">-La velocidad de crecimiento puede ser ralentizada o acelerada.\n-Puedes decidir si comprobar la húmedad o la temperatura.\n-Si quieres se mostrará el nombre ciéntifico de la planta\n-Puedes decidir si las estadísticas serán\ngenericas (frío/templado/caliente) o número exactos (5ºC).\n\nCuando cliques en el botón de volver los datos serán guardados y volverás a la app principal.</string>
+    <string name="volver">Volver</string>
+    <!--Planta-->
+    <string name="pimiento">Pimiento:</string>
+    <string name="luz1">Oscuro</string>
+    <string name="luz2">Poca iluminación</string>
+    <string name="luz3">Iluminación correcta</string>
+    <string name="luz4">Apaga el sol que te quedas ciego</string>
+    <string name="hum1">Clima desértico</string>
+    <string name="hum2">Seco</string>
+    <string name="hum3">Buena húmedad</string>
+    <string name="hum4">Saca el móvil del agua</string>
+    <string name="humNo">Húmedad desactivada</string>
+    <string name="temp1">Helado</string>
+    <string name="temp2">Frío</string>
+    <string name="temp3">Templado</string>
+    <string name="temp4">Caliente</string>
+    <string name="tempNo">Temperatura desactivada</string>
+    <string name="shake">No me agites</string>
+    <string name="alive">Viva</string>
+    <string name="dead">Muerta</string>
+</resources>

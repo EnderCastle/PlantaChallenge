@@ -1,3 +1,43 @@
 <resources>
-    <string name="app_name">Planta</string>
+    <string name="app_name">Plant Challenge</string>
+    <!--Main-->
+    <string name="instrucciones">Keep alive your plant and it will grow, you have to keep it with the correct humidity and temperature, dont shake it or it will die.\nHave fun.</string>
+    <string name="boton1">New plant / Continue</string>
+    <string name="boton2">Delete plant</string>
+    <string name="boton3">Settings</string>
+    <!--Ajustes-->
+    <string name="title">Settings</string>
+    <string name="growSp">Growing speed:</string>
+    <string name="growSp1">Slow</string>
+    <string name="growSp2">Normal</string>
+    <string name="growSp3">Fast</string>
+    <string name="humedad">Check humidity:</string>
+    <string name="temperatura">Temperature:</string>
+    <string name="science">Scientific name:</string>
+    <string name="toggleOn">On</string>
+    <string name="toggleOff">Off</string>
+    <string name="stats">Stats:</string>
+    <string name="stat1">Realistic</string>
+    <string name="stat2">Standar</string>
+    <string name="settingsText">-The growing speed can be slowed or accelerated.\n-You can decide if you want the humidity and temperature\nto be checked or not.\n-If you want the scientific name of the plant will be\ndisplayed.\n-In stats you can decide if the showed stats are\ngeneric (cold/warm/hot) or exact data (5ºC).\n\nWhen you click back the settings will be saved and\nyou will go back to the main app.</string>
+    <string name="volver">Back</string>
+    <!--Planta-->
+    <string name="pimiento">Pepper:</string>
+    <string name="luz1">Dark</string>
+    <string name="luz2">Few ilumination</string>
+    <string name="luz3">Correct ilumination</string>
+    <string name="luz4">Flashbang</string>
+    <string name="hum1">Desert like</string>
+    <string name="hum2">Dry</string>
+    <string name="hum3">Nice humidity"</string>
+    <string name="hum4">Get the mobile out of the water</string>
+    <string name="humNo">Humidity desactivated</string>
+    <string name="temp1">ICE</string>
+    <string name="temp2">Cold</string>
+    <string name="temp3">Warm</string>
+    <string name="temp4">HOT</string>
+    <string name="tempNo">Temperature desactivated</string>
+    <string name="shake">Don`t shake me</string>
+    <string name="alive">Alive</string>
+    <string name="dead">Dead</string>
 </resources>

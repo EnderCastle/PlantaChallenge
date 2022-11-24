@@ -1,15 +1,11 @@
 package com.example.planta;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -17,7 +13,7 @@ public class MainActivity extends Activity {
     private boolean temperaturaOn;
     private boolean nombreOn;
     private String growSpeed;
-    private float growSpeedFloat;
+    private float growSpeedFloat = 2;
     private String data;
     private boolean databool;
 
@@ -25,7 +21,13 @@ public class MainActivity extends Activity {
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button boton = (Button) findViewById(R.id.buton_empezar);
+
+        String velocidad1 = getString(R.string.growSp1);
+        String velocidad2 = getString(R.string.growSp2);
+        String velocidad3 = getString(R.string.growSp3);
+
+        String stat1 = getString(R.string.stat1);
+        String stat2 = getString(R.string.stat2);
 
         // pillamos las variables del shared preference
         SharedPreferences sharedPreferences = getSharedPreferences("ajuste",Context.MODE_PRIVATE);
@@ -35,27 +37,28 @@ public class MainActivity extends Activity {
         growSpeed = sharedPreferences.getString("velocidadCrecimiento","Normal");
         data = sharedPreferences.getString("data","Realistic");
 
+        System.out.println(humedadOn +" "+ temperaturaOn +" "+ nombreOn +" "+ growSpeed +" "+ data);
+
         // pillamos el valor float del string de velocidad
-        switch (growSpeed) {
-            case "Slow":
-                growSpeedFloat = 1;
-                break;
-            case "Normal":
-                growSpeedFloat = 2;
-                break;
-            case "Fast":
-                growSpeedFloat = 3;
-                break;
+        if (growSpeed.equals(velocidad1)) {
+            growSpeedFloat = 1;
         }
-        //pillamos el valor boolean de reasilmo/standar
-        switch (data) {
-            case "Realistic":
-               databool = true;
-                break;
-            case "Standar":
-                databool =false;
-                break;
+        else if (growSpeed.equals(velocidad2)) {
+            growSpeedFloat = 2;
         }
+        else if (growSpeed.equals(velocidad3)) {
+            growSpeedFloat = 3;
+        }
+
+        //pillamos el valor boolean de realismo/estandar
+        if (data.equals(stat1)) {
+            databool = true;
+        }
+        else if (data.equals(stat2)) {
+            databool = false;
+        }
+
+        System.out.println(growSpeedFloat + " " + databool);
 
     }
     public  void empezar (View v) {
@@ -106,4 +109,5 @@ public class MainActivity extends Activity {
 
         }
     }
+
 }
