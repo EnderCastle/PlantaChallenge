@@ -45,6 +45,10 @@ public class ActivityPlanta extends Activity {
         TextView acel =(TextView) findViewById(R.id.sped);
         TextView tenpe =(TextView) findViewById(R.id.temp);
 
+        humedad.setText(R.string.humNo);
+        acel.setText(R.string.shake);
+        tenpe.setText(R.string.tempNo);
+
         //ajustes
         boolean nombrecien = getIntent().getBooleanExtra("cientifico", false);
         boolean realista= getIntent().getBooleanExtra("data",false);
