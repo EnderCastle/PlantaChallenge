@@ -53,6 +53,8 @@ public class ActivityPlanta extends Activity {
         boolean humedadon=getIntent().getBooleanExtra("humedad", false);
         System.out.println(nombrecien);
         System.out.println(realista);
+
+
         System.out.println(velocidad);
         System.out.println(tempdes);
         System.out.println(humedadon);
