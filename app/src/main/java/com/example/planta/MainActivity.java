@@ -22,13 +22,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String velocidad1 = getString(R.string.growSp1);
-        String velocidad2 = getString(R.string.growSp2);
-        String velocidad3 = getString(R.string.growSp3);
-
-        String stat1 = getString(R.string.stat1);
-        String stat2 = getString(R.string.stat2);
-
         // pillamos las variables del shared preference
         SharedPreferences sharedPreferences = getSharedPreferences("ajuste",Context.MODE_PRIVATE);
         humedadOn = sharedPreferences.getBoolean("humedad", false);
@@ -37,30 +30,9 @@ public class MainActivity extends Activity {
         growSpeed = sharedPreferences.getString("velocidadCrecimiento","Normal");
         data = sharedPreferences.getString("data","Realistic");
 
-        System.out.println(humedadOn +" "+ temperaturaOn +" "+ nombreOn +" "+ growSpeed +" "+ data);
-
-        // pillamos el valor float del string de velocidad
-        if (growSpeed.equals(velocidad1)) {
-            growSpeedFloat = 1;
-        }
-        else if (growSpeed.equals(velocidad2)) {
-            growSpeedFloat = 2;
-        }
-        else if (growSpeed.equals(velocidad3)) {
-            growSpeedFloat = 3;
-        }
-
-        //pillamos el valor boolean de realismo/estandar
-        if (data.equals(stat1)) {
-            databool = true;
-        }
-        else if (data.equals(stat2)) {
-            databool = false;
-        }
-
-        System.out.println(growSpeedFloat + " " + databool);
-
+        actualizar();
     }
+
     public  void empezar (View v) {
         Intent intent = new Intent(getApplicationContext(),ActivityPlanta.class);
         intent.putExtra("humedad", humedadOn);
@@ -88,11 +60,14 @@ public class MainActivity extends Activity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (resultCode == RESULT_OK && requestCode == 0) {
+
             humedadOn = intent.getBooleanExtra("humedad",false);
             temperaturaOn = intent.getBooleanExtra("temperatura", false);
             nombreOn = intent.getBooleanExtra("nombre", false);
             growSpeed = intent.getStringExtra("velocidad");
             data = intent.getStringExtra("dataDisplayed");
+
+            actualizar();
 
             // definimos el shared
             SharedPreferences sharedPreferences = getSharedPreferences("ajuste", Context.MODE_PRIVATE);
@@ -107,6 +82,35 @@ public class MainActivity extends Activity {
 
             editor.commit();
 
+        }
+    }
+
+    public void actualizar() {
+
+        String velocidad1 = getString(R.string.growSp1);
+        String velocidad2 = getString(R.string.growSp2);
+        String velocidad3 = getString(R.string.growSp3);
+
+        String stat1 = getString(R.string.stat1);
+        String stat2 = getString(R.string.stat2);
+
+        // pillamos el valor float del string de velocidad
+        if (growSpeed.equals(velocidad1)) {
+            growSpeedFloat = 1;
+        }
+        else if (growSpeed.equals(velocidad2)) {
+            growSpeedFloat = 2;
+        }
+        else if (growSpeed.equals(velocidad3)) {
+            growSpeedFloat = 3;
+        }
+
+        //pillamos el valor boolean de realismo/estandar
+        if (data.equals(stat1)) {
+            databool = true;
+        }
+        else if (data.equals(stat2)) {
+            databool = false;
         }
     }
 
