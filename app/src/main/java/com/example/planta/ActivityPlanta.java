@@ -80,6 +80,10 @@ public class ActivityPlanta extends Activity {
         ProgressBar progressBar = (ProgressBar) this.findViewById(R.id.progressCrecimiento);
         progressBar.setMax((temporizador * 4)/(int)velocidad);
 
+        // etapa de la planta ya le pondre texto de verdad e idiomas
+        TextView etapa = (TextView) this.findViewById(R.id.etapaCrecimiento);
+        etapa.setText("a");
+
         //manager
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         //planta
@@ -209,12 +213,16 @@ public class ActivityPlanta extends Activity {
 
                 if(detecionHora.getX() >= (temporizador/velocidad)&&detecionHora.getX()<= (temporizador*2/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa2);
+                    etapa.setText("a"); // placeholder del nombre de la etapa
                 }else if(detecionHora.getX() >= (temporizador*2/velocidad)&&detecionHora.getX()<= (temporizador*3/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa3);
+                    etapa.setText("a"); // placeholder del nombre de la etapa
                 }else if(detecionHora.getX() >= (temporizador*3/velocidad)&&detecionHora.getX()<= (temporizador*4/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa4);
+                    etapa.setText("a"); // placeholder del nombre de la etapa
                 }else if(detecionHora.getX() >= (temporizador*4/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa5);
+                    etapa.setText("a"); // placeholder del nombre de la etapa
                     progressBar.getProgressDrawable().setColorFilter(Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
                 }
             }
@@ -230,8 +238,7 @@ public class ActivityPlanta extends Activity {
 
 
         Date currentTime = Calendar.getInstance().getTime();
-        TextView nacimiento = (TextView) findViewById(R.id.hora_start);
-        nacimiento.setText(currentTime.toString());
+
     }
 
     public  void  test(View view){
