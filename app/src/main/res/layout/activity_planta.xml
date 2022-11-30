@@ -66,12 +66,13 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="341dp"
-        android:onClick="test"
-        android:text="test"
-        app:layout_constraintStart_toEndOf="@+id/imagen"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="100dp"
+        android:onClick="guardar"
+        android:text="Salir"
+        app:layout_constraintEnd_toEndOf="@+id/progressCrecimiento"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/progressCrecimiento"
+        app:layout_constraintTop_toBottomOf="@+id/progressCrecimiento" />
 
     <ImageView
         android:id="@+id/imagen"

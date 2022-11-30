@@ -1,6 +1,8 @@
 package com.example.planta;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -34,14 +36,7 @@ public class ActivityPlanta extends Activity {
         vida=true;
         detecionHora.start();
         //cargar partida
-        File savefile = new File("plantasave.bin");
-        if(savefile.exists()){
-            try {
-                empezar();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        detecionHora.setX(empezar());
         //estado planta
         ImageView imagen = (ImageView) findViewById(R.id.imagen);
         TextView humedad =(TextView) findViewById(R.id.wet);
@@ -243,10 +238,6 @@ public class ActivityPlanta extends Activity {
 
     }
 
-    public  void  test(View view){
-        System.out.println("update"+detecionHora.getX());
-    }
-
     public void kill() {
         TextView status =(TextView) findViewById(R.id.vida);
         ImageView imagen = (ImageView) findViewById(R.id.imagen);
@@ -256,20 +247,26 @@ public class ActivityPlanta extends Activity {
         imagen.setImageResource(R.drawable.ded);
         progressBar.getProgressDrawable().setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
         iniciarHilo = false;
+        SharedPreferences sharedPreferences = getSharedPreferences("save", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("crecimiento",0);
+        editor.commit();
     }
 
-    public void guardar() throws IOException {
-        int x =detecionHora.getX();
-        File savefile = new File("plantasave.bin");
-        RandomAccessFile raf = new RandomAccessFile(savefile,"rw");
-        raf.seek(0);
-        raf.writeInt(x);
+    public void guardar(View v){
+        if(iniciarHilo){
+            int x =detecionHora.getX();
+            SharedPreferences sharedPreferences = getSharedPreferences("save", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("crecimiento",x);
+            editor.commit();
+        }
         finish();
     }
-    public int empezar() throws IOException {
-        File savefile = new File("plantasave.bin");
-        RandomAccessFile raf = new RandomAccessFile(savefile,"rw");
-        return raf.readInt();
+    public int empezar(){
+        SharedPreferences sharedPreferences = getSharedPreferences("save", Context.MODE_PRIVATE);
+        int x = sharedPreferences.getInt("crecimiento",0);
+        return x;
     }
 
 }

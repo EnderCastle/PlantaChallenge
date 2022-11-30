@@ -47,9 +47,11 @@ public class MainActivity extends Activity {
     }
 
     public void borrar (View v) {
-        File savefile = new File("plantasave.bin");
-        savefile.delete();
-        Toast.makeText(getApplicationContext(),savefile.getName()+" Eliminado",Toast.LENGTH_SHORT).show();
+        SharedPreferences sharedPreferences = getSharedPreferences("save", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("crecimiento",0);
+        editor.commit();
+        Toast.makeText(getApplicationContext(),"datos eliminados",Toast.LENGTH_SHORT).show();
     }
 
     public void ajustes (View v) {
