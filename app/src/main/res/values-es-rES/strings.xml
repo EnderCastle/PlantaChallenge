@@ -41,4 +41,9 @@
     <string name="shake">No me agites</string>
     <string name="alive">Viva</string>
     <string name="dead">Muerta</string>
+    <string name="etapa1">Semilla</string>
+    <string name="etapa2">Bulbo</string>
+    <string name="etapa3">Brote</string>
+    <string name="etapa4">Joven</string>
+    <string name="etapa5">Adulta</string>
 </resources>

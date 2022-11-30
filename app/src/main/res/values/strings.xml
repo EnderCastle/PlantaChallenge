@@ -40,4 +40,9 @@
     <string name="shake">Don`t shake me</string>
     <string name="alive">Alive</string>
     <string name="dead">Dead</string>
+    <string name="etapa1">Seed</string>
+    <string name="etapa2">Bulb</string>
+    <string name="etapa3">Sprout</string>
+    <string name="etapa4">Young</string>
+    <string name="etapa5">Adult</string>
 </resources>

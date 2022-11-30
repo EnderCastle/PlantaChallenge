@@ -81,7 +81,7 @@ public class ActivityPlanta extends Activity {
 
         // etapa de la planta ya le pondre texto de verdad e idiomas
         TextView etapa = (TextView) this.findViewById(R.id.etapaCrecimiento);
-        etapa.setText("a");
+        etapa.setText(R.string.etapa1);
 
         //manager
         SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -212,16 +212,16 @@ public class ActivityPlanta extends Activity {
 
                 if(detecionHora.getX() >= (temporizador/velocidad)&&detecionHora.getX()<= (temporizador*2/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa2);
-                    etapa.setText("a"); // placeholder del nombre de la etapa
+                    etapa.setText(R.string.etapa2);
                 }else if(detecionHora.getX() >= (temporizador*2/velocidad)&&detecionHora.getX()<= (temporizador*3/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa3);
-                    etapa.setText("a"); // placeholder del nombre de la etapa
+                    etapa.setText(R.string.etapa3);
                 }else if(detecionHora.getX() >= (temporizador*3/velocidad)&&detecionHora.getX()<= (temporizador*4/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa4);
-                    etapa.setText("a"); // placeholder del nombre de la etapa
+                    etapa.setText(R.string.etapa4);
                 }else if(detecionHora.getX() >= (temporizador*4/velocidad)&&vida){
                     imagen.setImageResource(R.drawable.etapa5);
-                    etapa.setText("a"); // placeholder del nombre de la etapa
+                    etapa.setText(R.string.etapa5);
                     progressBar.getProgressDrawable().setColorFilter(Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
                 }
             }
@@ -251,6 +251,8 @@ public class ActivityPlanta extends Activity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("crecimiento",0);
         editor.commit();
+        TextView etapa = (TextView) findViewById(R.id.etapaCrecimiento);
+        etapa.setText("");
     }
 
     public void guardar(View v){
