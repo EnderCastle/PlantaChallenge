@@ -1,26 +1,21 @@
 package com.example.planta;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GestureDetectorCompat;
-
 import android.app.Activity;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.lang.reflect.Field;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimerTask;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
 
 public class ActivityPlanta extends Activity {
 
@@ -38,6 +33,15 @@ public class ActivityPlanta extends Activity {
         iniciarHilo =true;
         vida=true;
         detecionHora.start();
+        //cargar partida
+        File savefile = new File("plantasave.bin");
+        if(savefile.exists()){
+            try {
+                empezar();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         //estado planta
         ImageView imagen = (ImageView) findViewById(R.id.imagen);
         TextView humedad =(TextView) findViewById(R.id.wet);
@@ -237,8 +241,6 @@ public class ActivityPlanta extends Activity {
         sm.registerListener(speedSensorEventListener,speed,SensorManager.SENSOR_DELAY_NORMAL);
 
 
-        Date currentTime = Calendar.getInstance().getTime();
-
     }
 
     public  void  test(View view){
@@ -254,6 +256,20 @@ public class ActivityPlanta extends Activity {
         imagen.setImageResource(R.drawable.ded);
         progressBar.getProgressDrawable().setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
         iniciarHilo = false;
+    }
+
+    public void guardar() throws IOException {
+        int x =detecionHora.getX();
+        File savefile = new File("plantasave.bin");
+        RandomAccessFile raf = new RandomAccessFile(savefile,"rw");
+        raf.seek(0);
+        raf.writeInt(x);
+        finish();
+    }
+    public int empezar() throws IOException {
+        File savefile = new File("plantasave.bin");
+        RandomAccessFile raf = new RandomAccessFile(savefile,"rw");
+        return raf.readInt();
     }
 
 }

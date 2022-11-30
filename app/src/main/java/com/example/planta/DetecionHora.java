@@ -17,7 +17,12 @@ public class DetecionHora extends Thread {
 
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
     public int getX() {
         return x;
     }
+
 }

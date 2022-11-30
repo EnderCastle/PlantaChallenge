@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
+import java.io.File;
 
 public class MainActivity extends Activity {
 
@@ -44,7 +47,9 @@ public class MainActivity extends Activity {
     }
 
     public void borrar (View v) {
-
+        File savefile = new File("plantasave.bin");
+        savefile.delete();
+        Toast.makeText(getApplicationContext(),savefile.getName()+" Eliminado",Toast.LENGTH_SHORT).show();
     }
 
     public void ajustes (View v) {
